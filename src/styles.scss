@@ -12,3 +12,23 @@
 body {
   background-color: #f6f6f6;
 }
+
+h1 {
+  margin-bottom: 36px;
+}
+
+ul li {
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ddd;
+  &:hover {
+    background-color: #ccc;
+  }
+}

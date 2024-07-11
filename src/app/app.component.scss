@@ -3,22 +3,8 @@
   width: 100%;
   padding: 20px;
   margin: 0 auto;
-  h1 {
-    margin-bottom: 36px;
-  }
-  ul li {
-    cursor: pointer;
-  }
-
-  button {
-    padding: 10px 20px;
-    font-size: 18px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #ddd;
-    &:hover {
-      background-color: #ccc;
-    }
-  }
+}
+.flex {
+  display: flex;
+  gap: 48px;
 }
