@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { AlunosComponent } from './alunos/alunos.component';
 import { CadastroAlunoComponent } from './cadastro-aluno/cadastro-aluno.component';
 import { DisciplinasComponent } from './disciplinas/disciplinas.component';
+import { usuarioLogadoGuard } from './shared/guards/usuario-logado.guard';
 
 export const routes: Routes = [
   {
@@ -13,18 +14,22 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [usuarioLogadoGuard],
   },
   {
     path: 'alunos',
     component: AlunosComponent,
+    canActivate: [usuarioLogadoGuard],
   },
   {
     path: 'cadastro-aluno',
     component: CadastroAlunoComponent,
+    canActivate: [usuarioLogadoGuard],
   },
   {
     path: 'disciplinas',
     component: DisciplinasComponent,
+    canActivate: [usuarioLogadoGuard],
   },
   {
     path: '',

@@ -6,7 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { LoginService } from '../shared/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -18,14 +19,27 @@ import { RouterLink } from '@angular/router';
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
 
+  constructor(private loginService: LoginService, private router: Router) {}
+
   ngOnInit(): void {
     this.formLogin = new FormGroup({
       email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      senha: new FormControl('', Validators.required),
     });
   }
 
-  entrar() {}
+  entrar() {
+    if (this.formLogin.value) {
+      const retorno = this.loginService.logar(this.formLogin.value);
+      if (retorno) {
+        this.router.navigate(['/home']);
+      } else {
+        this.formLogin.reset();
+      }
+    } else {
+      window.alert('Por favor, preencha os campos');
+    }
+  }
 
   cadastrar() {
     window.alert(

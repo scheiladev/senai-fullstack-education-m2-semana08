@@ -1,0 +1,28 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "email": "maria@email.com",
+      "senha": "teste123",
+      "admin": true
+    },
+    {
+      "id": "2",
+      "email": "laura@email.com",
+      "senha": "teste123",
+      "admin": false
+    },
+    {
+      "id": "3",
+      "email": "paulo@email.com",
+      "senha": "teste123",
+      "admin": false
+    },
+    {
+      "id": "4",
+      "email": "pedro@email.com",
+      "senha": "teste123",
+      "admin": true
+    }
+  ]
+}
