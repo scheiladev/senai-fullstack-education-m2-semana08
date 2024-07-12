@@ -18,12 +18,11 @@ export const routes: Routes = [
   },
   {
     path: 'alunos',
-    component: AlunosComponent,
-    canActivate: [usuarioLogadoGuard],
-  },
-  {
-    path: 'cadastro-aluno',
-    component: CadastroAlunoComponent,
+    children: [
+      { path: '', component: AlunosComponent },
+      { path: 'cadastro-aluno', component: CadastroAlunoComponent },
+      { path: 'cadastro-aluno/:id', component: CadastroAlunoComponent },
+    ],
     canActivate: [usuarioLogadoGuard],
   },
   {

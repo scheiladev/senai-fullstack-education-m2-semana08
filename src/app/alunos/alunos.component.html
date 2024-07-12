@@ -1,18 +1,15 @@
-<form [formGroup]="formPesquisa" (ngSubmit)="pesquisar()">
-  <div>
-    <label for="pesquisar">Pesquisar:</label>
-    <input
-      type="text"
-      id="pesquisar"
-      name="pesquisar"
-      formControlName="pesquisar"
-      placeholder="Buscar por nome ou email"
-    />
-  </div>
-  <div class="botoes">
-    <button type="submit" [disabled]="!formPesquisa.valid">Pesquisar</button>
-  </div>
-</form>
+<div class="pesquisar">
+  <label for="pesquisar">Pesquisar:</label>
+  <input
+    type="text"
+    id="pesquisar"
+    name="pesquisar"
+    placeholder="Buscar por nome ou email"
+    [(ngModel)]="textoPesquisa"
+  />
+  <button type="button" (click)="pesquisar()">Pesquisar</button>
+  <button type="button" (click)="cadastrar()">Novo Aluno</button>
+</div>
 
 <table>
   <thead>
@@ -20,29 +17,21 @@
       <th>Nome</th>
       <th>CPF</th>
       <th>E-mail</th>
+      <th>Celular</th>
       <th>Curso</th>
       <th>Ações</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Aluno</td>
-      <td>000.000.000-00</td>
-      <td>aluno&#64;email.com</td>
-      <td>Fullstack</td>
+    <tr *ngFor="let aluno of pesquisaAlunos">
+      <td>{{ aluno?.nomeCompleto }}</td>
+      <td>{{ aluno?.cpf }}</td>
+      <td>{{ aluno?.email }}</td>
+      <td>{{ aluno?.celular }}</td>
+      <td>{{ aluno?.curso }}</td>
       <td>
-        <button type="button" [routerLink]="['/cadastro-aluno']">Editar</button>
-        <button type="button" (click)="excluir()">Excluir</button>
-      </td>
-    </tr>
-    <tr>
-      <td>Aluno</td>
-      <td>000.000.000-00</td>
-      <td>aluno&#64;email.com</td>
-      <td>Fullstack</td>
-      <td>
-        <button type="button" [routerLink]="['/cadastro-aluno']">Editar</button>
-        <button type="button" (click)="excluir()">Excluir</button>
+        <button type="button" (click)="editar(aluno.id)">Editar</button>
+        <button type="button" (click)="excluir(aluno.id)">Excluir</button>
       </td>
     </tr>
   </tbody>

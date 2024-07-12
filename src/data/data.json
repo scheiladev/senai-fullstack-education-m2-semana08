@@ -24,5 +24,31 @@
       "senha": "teste123",
       "admin": true
     }
+  ],
+  "alunos": [
+    {
+      "id": "353d",
+      "nomeCompleto": "Barto Stihler",
+      "cpf": "45678912355",
+      "email": "barto@email.com",
+      "celular": "44888992255",
+      "curso": "1"
+    },
+    {
+      "id": "b40e",
+      "nomeCompleto": "Lunna Stihler",
+      "cpf": "78945678955",
+      "email": "lunna@email.com",
+      "celular": "99888557744",
+      "curso": "3"
+    },
+    {
+      "id": "72b2",
+      "nomeCompleto": "Scheila Stihler",
+      "cpf": "45678945678",
+      "email": "scheila@email.com",
+      "celular": "7865478641233",
+      "curso": "3"
+    }
   ]
 }

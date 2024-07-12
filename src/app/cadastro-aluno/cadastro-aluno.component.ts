@@ -6,7 +6,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { AlunoInterface } from '../shared/interfaces/aluno.interface';
+import { AlunosService } from '../shared/services/alunos.service';
 
 @Component({
   selector: 'app-cadastro-aluno',
@@ -17,8 +19,17 @@ import { RouterLink } from '@angular/router';
 })
 export class CadastroAlunoComponent implements OnInit {
   formCadastro!: FormGroup;
+  idAluno: string | undefined;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private alunosService: AlunosService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.idAluno = this.activatedRoute.snapshot.params['id'];
+
     this.formCadastro = new FormGroup({
       nomeCompleto: new FormControl('', Validators.required),
       cpf: new FormControl('', Validators.required),
@@ -26,9 +37,50 @@ export class CadastroAlunoComponent implements OnInit {
       celular: new FormControl('', Validators.required),
       curso: new FormControl('', Validators.required),
     });
+
+    if (this.idAluno) {
+      this.alunosService.getAluno(this.idAluno).subscribe((retorno) => {
+        if (retorno) {
+          this.formCadastro.patchValue(retorno);
+        }
+      });
+    }
   }
 
-  salvar() {
-    window.alert('Usuário salvo com sucesso!');
+  submitForm() {
+    if (this.formCadastro.valid) {
+      if (this.idAluno) {
+        console.log('editar');
+        this.editar(this.formCadastro.value);
+      } else {
+        this.cadastrar(this.formCadastro.value);
+      }
+    } else {
+      this.formCadastro.markAllAsTouched();
+    }
+  }
+
+  cadastrar(aluno: AlunoInterface) {
+    this.alunosService
+      .postAluno(aluno)
+      .subscribe((retorno) => console.log(retorno));
+    window.alert('Aluno cadastrado com sucesso!');
+    this.formCadastro.reset();
+    this.router.navigate(['/alunos']);
+  }
+
+  editar(aluno: AlunoInterface) {
+    aluno.id = this.idAluno!;
+    this.alunosService
+      .putAluno(aluno)
+      .subscribe((retorno) => console.log(retorno));
+    window.alert('Aluno alterado com sucesso!');
+    this.formCadastro.reset();
+    this.router.navigate(['/alunos']);
+  }
+
+  cancelar() {
+    this.formCadastro.reset();
+    this.router.navigate(['/alunos']);
   }
 }

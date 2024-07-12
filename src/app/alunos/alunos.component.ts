@@ -1,31 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { AlunoInterface } from '../shared/interfaces/aluno.interface';
+import { AlunosService } from '../shared/services/alunos.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-alunos',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, CommonModule],
   templateUrl: './alunos.component.html',
   styleUrl: './alunos.component.scss',
 })
 export class AlunosComponent implements OnInit {
-  formPesquisa!: FormGroup;
+  textoPesquisa: string | undefined;
+  listaAlunos: Array<AlunoInterface> = [];
+  pesquisaAlunos: Array<AlunoInterface> = [];
+
+  constructor(private alunosService: AlunosService, private router: Router) {}
 
   ngOnInit(): void {
-    this.formPesquisa = new FormGroup({
-      pesquisar: new FormControl('', Validators.required),
+    this.alunosService.getAlunos().subscribe((retorno) => {
+      retorno.forEach((aluno) => {
+        this.listaAlunos.push(aluno);
+      });
     });
+    this.pesquisaAlunos = this.listaAlunos;
   }
 
-  pesquisar() {}
+  pesquisar() {
+    if (this.textoPesquisa) {
+      this.pesquisaAlunos = this.listaAlunos.filter(
+        (aluno) =>
+          aluno.nomeCompleto
+            .toUpperCase()
+            .includes(this.textoPesquisa!.toUpperCase()) ||
+          aluno.email.toUpperCase().includes(this.textoPesquisa!.toUpperCase())
+      );
+    } else {
+      this.pesquisaAlunos = this.listaAlunos;
+    }
+  }
 
-  excluir() {
-    window.confirm('Quer mesmo excluir este usuário?');
+  cadastrar() {
+    this.router.navigate(['alunos/cadastro-aluno']);
+  }
+
+  editar(id: string) {
+    this.router.navigate(['alunos/cadastro-aluno', id]);
+  }
+
+  excluir(id: string) {
+    if (window.confirm('Quer mesmo excluir este usuário?')) {
+      this.alunosService.delete(id).subscribe(() => {
+        this.pesquisaAlunos = this.listaAlunos.filter(
+          (aluno) => aluno.id !== id
+        );
+      });
+      window.alert('Aluno excluído com sucesso!');
+    }
   }
 }

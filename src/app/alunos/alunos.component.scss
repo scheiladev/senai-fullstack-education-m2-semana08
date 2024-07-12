@@ -1,7 +1,7 @@
-form {
+.pesquisar {
   display: flex;
   align-items: center;
-  margin: 24px 0;
+  margin-bottom: 24px;
   label {
     margin-right: 16px;
   }
@@ -16,6 +16,10 @@ form {
   }
   button {
     padding: 8px 32px;
+    text-wrap: nowrap;
+    &:last-of-type {
+      margin-left: 72px;
+    }
   }
 }
 table {

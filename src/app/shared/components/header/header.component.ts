@@ -11,10 +11,9 @@ import { LoginService } from '../../services/login.service';
 })
 export class HeaderComponent {
   router = inject(Router);
+  usuario = this.loginService.usuarioLogado?.email || '';
 
   constructor(private loginService: LoginService) {}
-
-  usuario = this.loginService.usuarioLogado?.email;
 
   sair() {
     if (window.confirm('Deseja sair do sistema?')) {

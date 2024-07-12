@@ -1,6 +1,6 @@
 form {
   max-width: 640px;
-  margin: 40px auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,5 +24,13 @@ form {
       font-style: italic;
       color: #f70063;
     }
+  }
+  .botoes {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    flex-direction: row;
   }
 }
