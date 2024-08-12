@@ -1,42 +1,15 @@
-<div class="disciplinas">
-  <h2>Curso Fullstack - Grade Curricular</h2>
+<div class="disciplinas" *ngIf="curso">
+  <h2>{{ curso.nome }} - Grade Curricular</h2>
 
   <div class="grade-semestres">
-    <div class="semestre">
+    <div *ngFor="let semestre of getSemestres()" class="semestre">
       <h3 class="titulo">
-        <span>1</span>
-        semestre
+        <span>{{ semestre }}</span> semestre
       </h3>
       <ul class="disciplinas">
-        <li>Lógica de Programação</li>
-        <li>Java</li>
-        <li>Banco de Dados</li>
-        <li>Git e Github</li>
-      </ul>
-    </div>
-
-    <div class="semestre">
-      <h3 class="titulo">
-        <span>2</span>
-        semestre
-      </h3>
-      <ul class="disciplinas">
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>Javascript</li>
-        <li>Angular</li>
-      </ul>
-    </div>
-
-    <div class="semestre">
-      <h3 class="titulo">
-        <span>3</span>
-        semestre
-      </h3>
-      <ul class="disciplinas">
-        <li>Integração Backend e Frontend</li>
-        <li>Testes</li>
-        <li>Deploy</li>
+        <li *ngFor="let disciplina of disciplinasSemestre[semestre]">
+          {{ disciplina.nome }}
+        </li>
       </ul>
     </div>
   </div>

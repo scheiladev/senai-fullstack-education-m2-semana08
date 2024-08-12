@@ -2,5 +2,7 @@
 
 <div class="app" [ngClass]="{ flex: isAppPage }">
   <app-sidebar *ngIf="isAppPage"></app-sidebar>
-  <router-outlet></router-outlet>
+  <div class="full">
+    <router-outlet></router-outlet>
+  </div>
 </div>

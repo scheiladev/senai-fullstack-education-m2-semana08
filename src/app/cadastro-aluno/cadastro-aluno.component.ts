@@ -9,6 +9,8 @@ import {
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AlunoInterface } from '../shared/interfaces/aluno.interface';
 import { AlunosService } from '../shared/services/alunos.service';
+import { CursoInterface } from '../shared/interfaces/curso.interface';
+import { CursosService } from '../shared/services/cursos.service';
 
 @Component({
   selector: 'app-cadastro-aluno',
@@ -20,10 +22,12 @@ import { AlunosService } from '../shared/services/alunos.service';
 export class CadastroAlunoComponent implements OnInit {
   formCadastro!: FormGroup;
   idAluno: string | undefined;
+  cursos!: Array<CursoInterface>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private alunosService: AlunosService,
+    private cursoService: CursosService,
     private router: Router
   ) {}
 
@@ -45,6 +49,10 @@ export class CadastroAlunoComponent implements OnInit {
         }
       });
     }
+
+    this.cursoService.getCursos().subscribe((retorno) => {
+      this.cursos = retorno;
+    });
   }
 
   submitForm() {

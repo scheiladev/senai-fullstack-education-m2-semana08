@@ -3,4 +3,5 @@ export interface UsuarioInterface {
   email: string;
   senha: string;
   admin: boolean;
+  curso: string;
 }

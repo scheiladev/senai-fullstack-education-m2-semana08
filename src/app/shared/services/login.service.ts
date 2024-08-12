@@ -11,14 +11,13 @@ export class LoginService {
 
   constructor(private usuariosService: UsuariosService) {
     this.obterUsuarios();
+    this.recuperarUsuarioLogado();
   }
 
   logar(usuario: { email: string; senha: string }): boolean {
     const matchUser = this.listaUsuarios.find(
       (user) => user.email === usuario.email && user.senha === usuario.senha
     );
-
-    console.log(matchUser);
 
     if (matchUser) {
       this.usuarioLogado = matchUser;
@@ -44,5 +43,13 @@ export class LoginService {
         this.listaUsuarios.push(usuario);
       });
     });
+  }
+
+  recuperarUsuarioLogado(): UsuarioInterface | null {
+    const usuarioLogado = sessionStorage.getItem('usuarioLogado');
+    if (usuarioLogado) {
+      this.usuarioLogado = JSON.parse(usuarioLogado);
+    }
+    return this.usuarioLogado;
   }
 }

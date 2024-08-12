@@ -4,25 +4,29 @@
       "id": "1",
       "email": "maria@email.com",
       "senha": "teste123",
-      "admin": true
+      "admin": true,
+      "curso": "2"
     },
     {
       "id": "2",
       "email": "laura@email.com",
       "senha": "teste123",
-      "admin": false
+      "admin": false,
+      "curso": "1"
     },
     {
       "id": "3",
       "email": "paulo@email.com",
       "senha": "teste123",
-      "admin": false
+      "admin": false,
+      "curso": "2"
     },
     {
       "id": "4",
       "email": "pedro@email.com",
       "senha": "teste123",
-      "admin": true
+      "admin": true,
+      "curso": "3"
     }
   ],
   "alunos": [
@@ -49,6 +53,22 @@
       "email": "scheila@email.com",
       "celular": "7865478641233",
       "curso": "3"
+    },
+    {
+      "id": "04c3",
+      "nomeCompleto": "Ana Teste",
+      "cpf": "5654645",
+      "email": "654654",
+      "celular": "654654",
+      "curso": "4"
+    },
+    {
+      "id": "529e",
+      "nomeCompleto": "Julia Castro",
+      "cpf": "56465465464",
+      "email": "julia@email.com",
+      "celular": "654654654564",
+      "curso": "6"
     }
   ],
   "cursos": [
@@ -63,6 +83,18 @@
     {
       "id": "3",
       "nome": "Fullstack"
+    },
+    {
+      "id": "4",
+      "nome": "Devops"
+    },
+    {
+      "id": "5",
+      "nome": "UX/UI Designer"
+    },
+    {
+      "id": "6",
+      "nome": "Dados"
     }
   ],
   "disciplinas": [
@@ -102,7 +134,6 @@
       "curso": "3",
       "semestre": "3"
     },
-
     {
       "id": "7",
       "nome": "Deploy",
